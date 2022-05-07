@@ -1,2 +1,2 @@
 # Cloud-Archive
-I place where you can Arcive and manage your readings
+A place where you can Arcive and manage your readings
