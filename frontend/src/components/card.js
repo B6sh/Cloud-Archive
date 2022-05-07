@@ -1,26 +1,27 @@
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
-
+import { Link, useNavigate} from "react-router-dom";
 import React from 'react'
 
-export default function card() {
+export default function Card2(props) {
+    let navigate = useNavigate();
     return (
         <Card cover css={{ w: "100%" }}>
             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                 <Col>
                     <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-                        New
+                        Book Title
                     </Text>
-                    <Text h3 color="black">
-                        Acme camera
+                    <Text h6 color="black">
+                        {props.title}
                     </Text>
                 </Col>
             </Card.Header>
             <Card.Body>
                 <Card.Image
-                    src="https://nextui.org/images/card-example-6.jpeg"
+                    src='https://w0.peakpx.com/wallpaper/972/48/HD-wallpaper-stack-of-books-blue-background-education-concepts-books-library-school-learning-concepts.jpg'
                     height={400}
                     width="100%"
-                    alt="Card example background"
+                    alt="Book background"
                 />
             </Card.Body>
             <Card.Footer
@@ -36,22 +37,19 @@ export default function card() {
                 <Row>
                     <Col>
                         <Text color="#000" size={12}>
-                            Available soon.
-                        </Text>
-                        <Text color="#000" size={12}>
-                            Get notified.
+                            Author: {props.author}
                         </Text>
                     </Col>
                     <Col>
                         <Row justify="flex-end">
-                            <Button flat auto rounded color="secondary">
+                            <Button onClick={() => {navigate(`/books/${props.id}`)}} flat auto rounded color="primary">
                                 <Text
                                     css={{ color: "inherit" }}
                                     size={12}
                                     weight="bold"
                                     transform="uppercase"
                                 >
-                                    Notify Me
+                                    View Book
                                 </Text>
                             </Button>
                         </Row>
