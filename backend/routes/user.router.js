@@ -2,9 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 // import controller
-const bookControl = require("../controllers/book.controller")
+const userControl = require("../controllers/user.controller");
+
 
 // routes to controller functions
-router.get("/", bookControl.getAllBooks)
+
+
+
+
 
 module.exports = router
