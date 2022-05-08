@@ -1,2 +1,3 @@
-# Cloud-Archive
-I place where you can archive and manage your readings
+# Cloud Archive Backend
+Please remeber to install the node models before start working using:
+` npm install `
