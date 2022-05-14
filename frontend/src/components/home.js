@@ -1,16 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Input, Grid } from "@nextui-org/react";
 import Card from './card';
 import data from '../data'
 import { GiArchiveResearch } from "react-icons/gi";
+import axios from 'axios';
 // import { history } from "react-router-dom";
 
 export default function Home() {
-    const [books, setBooks] = useState(data); // fetch all books
+    const [books, setBooks] = useState(data); // fetch all books  useState([]);
     // const handleViewBook = (e) => {
     //     history.push(`/books/${id}`)
     // }
+
+    // To fetch all books from Backend
+    // useEffect(() => {
+    //     axios.get('/book')
+    //         .then(res => {
+    //             console.log(res)
+    //             setBooks(res.data)
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [])
 
     const [searchTerm, setSearchTerm] = useState("");
 
