@@ -4,6 +4,7 @@ import React from 'react'
 
 export default function Card2(props) {
     let navigate = useNavigate();
+    // No fetch
     return (
         <Card cover css={{ w: "100%" }}>
             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
