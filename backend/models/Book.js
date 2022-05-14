@@ -10,13 +10,16 @@ const Book = mongoose.Schema({
     authors: {
         type: String,
     },
-    avg_rating: {
+    average_rating: {
         type: Number,
     },
-    lang_code: {
+    isbn: {
         type: String,
     },
-    pages: {
+    language_code: {
+        type: String,
+    },
+    num_pages: {
         type: Number,
     },
     ratings_count: {
