@@ -6,7 +6,7 @@ const favoriteControl = require("../controllers/favorite.controller");
 
 
 // routes to controller functions
-router.get('/:id', favoriteControl.getAllFavorites);
+router.get('/:username', favoriteControl.getAllFavorites);
 router.post('/', favoriteControl.addToFavorites);
 router.delete('/', favoriteControl.deleteFromFavorites);
 

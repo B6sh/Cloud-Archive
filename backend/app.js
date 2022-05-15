@@ -99,7 +99,6 @@ app.get("/auth/info", (req, res) => {
 
 // Routes
 app.use("/book", require("./routes/book.router"));
-app.use("/user", require("./routes/user.router"));
 app.use("/favorite", require("./routes/favorite.router"));
 app.use("/comment", require("./routes/comment.router"));
 app.use("/user", require("./routes/user.router"));

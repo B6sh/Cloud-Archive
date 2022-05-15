@@ -3,7 +3,7 @@ const User = require("../models/User")
 const Book = require("../models/Book")
 
 exports.getAllFavorites = async (req, res) => {
-    Favorite.find({userId: req.params.id}, async (err, found) => {
+    Favorite.find({userId: req.params.username}, async (err, found) => {
         if(err) throw err
         res.json(found)
         
