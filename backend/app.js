@@ -41,11 +41,11 @@ require("./config/passportConfig")(passport);
 app.post("/auth/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
-    if (!user) res.send("No User Exists");
+    if (!user) res.json({authenticated: false});
     else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        res.send("Successfully Authenticated");
+        res.send({authenticated: true});
         console.log(req.user);
       });
     }
@@ -54,21 +54,43 @@ app.post("/auth/login", (req, res, next) => {
 app.post("/auth/signup", (req, res) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
-    if (doc) res.send("User Already Exists");
+    if (doc) res.json({
+      created: false,
+      exists: true
+    });
     if (!doc) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
       const newUser = new User({
+        name: req.body.name,
+        image: req.body.image,
         username: req.body.username,
         password: hashedPassword,
+        email: req.body.email
       });
       await newUser.save();
-      res.send("User Created");
+      res.json({
+        created: true,
+        exists: false
+      });
     }
   });
 });
 app.get("/auth/info", (req, res) => {
-  res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+  
+  if(!req.user){
+    res.json({ userAuthenticated: false})
+  } else{
+      User.findOne({ username: req.user.username }, async (err, info) => {
+      if (err) throw err;
+  
+      res.json({ userAuthenticated: true, info});
+
+      });
+    
+     // The req.user stores the entire user that has been authenticated inside of it.
+  }
+  
 });
 
 
@@ -77,7 +99,10 @@ app.get("/auth/info", (req, res) => {
 
 // Routes
 app.use("/book", require("./routes/book.router"));
-app.use("/user", require("./routes/user.router"))
+app.use("/user", require("./routes/user.router"));
+app.use("/favorite", require("./routes/favorite.router"));
+app.use("/comment", require("./routes/comment.router"));
+app.use("/user", require("./routes/user.router"));
 
 
 

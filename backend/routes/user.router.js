@@ -7,7 +7,7 @@ const userControl = require("../controllers/user.controller");
 
 // routes to controller functions
 
-
+router.get('/:username', userControl.getUserInfoByUsername)
 
 
 

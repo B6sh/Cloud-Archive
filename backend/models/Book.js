@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const Book = mongoose.Schema({
-    bookID: {
-        type: Number
-    },
     title: {
         type: String,
     },

@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
-const Comment = mongoose.Schema({
-    bookID: {
-        type: Number
+const comment = mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId
+    },
+    bookId: {
+        type: mongoose.Schema.Types.ObjectId
     },
     comment: {
         type: String,
@@ -10,4 +13,4 @@ const Comment = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model("Comment", Comment);
+module.exports = mongoose.model("Comment", comment);
