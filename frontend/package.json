@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3003/",
+  "proxy": "http://18.195.216.198:3003/",
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.6",
     "@testing-library/jest-dom": "^5.16.4",
