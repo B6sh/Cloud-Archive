@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { Loading } from "@nextui-org/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Input, Grid } from "@nextui-org/react";
 import Card from './card';
-import data from '../data'
 import { GiArchiveResearch } from "react-icons/gi";
 import axios from 'axios';
 // import { history } from "react-router-dom";
 
 export default function Home() {
-    const [books, setBooks] = useState(data); // fetch all books  useState([]);
+    const [books, setBooks] = useState([]); // fetch all books  useState([]);
+    const [IsLoaded, setIsLoaded] = useState(false);
     // const handleViewBook = (e) => {
     //     history.push(`/books/${id}`)
     // }
 
     // To fetch all books from Backend
-    // useEffect(() => {
-    //     axios.get('/book')
-    //         .then(res => {
-    //             console.log(res)
-    //             setBooks(res.data)
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [])
+    useEffect(() => {
+        axios.get('/book')
+            .then(res => {
+                // console.log(res);
+                setBooks(res.data);
+                setIsLoaded(true);
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -43,17 +45,22 @@ export default function Home() {
                 </Grid>
             </Grid.Container>
             <div className='row'>
-                {books.filter((book) => {
-                    if (searchTerm == "") {
-                        return book;
-                    } else if (book.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return book;
-                    }
-                }).map((book) => (
-                    <div className='col-lg-4 col-md-4 col-xl-4 col-sm-6 mt-4' key={book.bookID}>
-                        <Card title={book.title} author={book.authors} id={book.bookID} />
-                    </div>
-                ))}
+                {IsLoaded ?
+
+                    books.filter((book) => {
+                        if (searchTerm == "") {
+                            return book;
+                        } else if (book.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return book;
+                        }
+                    }).map((book) => (
+                        <div className='col-lg-4 col-md-4 col-xl-4 col-sm-6 mt-4' key={book._id}>
+                            <Card title={book.title} author={book.authors} id={book._id} />
+                        </div>
+                    ))
+
+                    : <h1 className='text-center mt-5'><Loading size="xl" >Fetching books</Loading></h1>
+                }
             </div>
 
         </div>
