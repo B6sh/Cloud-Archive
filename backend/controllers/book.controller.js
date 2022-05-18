@@ -7,7 +7,7 @@ exports.getAllBooks = async (req, res) => {
 
 exports.getBookById = async (req, res) => {
     Book.findOne({_id: req.params.id}, (err, result) => {
-        if(err) throw err
+        if(err) res.json(result)
         res.json(result)
     })
 }

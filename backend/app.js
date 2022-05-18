@@ -1,4 +1,4 @@
-require("dotenv").config();
+if (process.env.NODE_ENV != 'production') require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path")
@@ -10,7 +10,7 @@ const cors = require("cors");
 const User = require("./models/User")
 const cookieParser = require("cookie-parser");
 
-const port = process.env.PORT
+const port = process.env.PORT || 3003;
 const app = express();
 
 
